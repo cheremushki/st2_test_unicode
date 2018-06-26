@@ -1,0 +1,7 @@
+---
+description: Test passing unicode between mistral tasks
+enabled: true
+entry_point: workflows/pass_unicode_output2.yaml
+name: pass_unicode_output2
+pack: test
+runner_type: mistral-v2

@@ -1,0 +1,22 @@
+version: '2.0'
+
+test.pass_unicode_output2:
+  description: A testcase for passing unicode output between tasks
+  type: direct
+  output:
+    out: " {{ _.t2_output }}"
+  tasks:
+    task1:
+      action: test.echo_action
+      input:
+        message: "Rue de la Défense"
+      publish:
+        t1_output: "{{ task('task1').result.result }}"
+      on-complete:
+        - task2
+    task2:
+      action: test.echo_action
+      input:
+        message: "{{ _.t1_output }}"
+      publish:
+        t2_output: "{{ task('task2').result.result }}"
